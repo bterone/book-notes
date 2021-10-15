@@ -32,4 +32,9 @@ To create a site, only a valid domain and a timezone is required.
 A user can have only a certain amount of sites as specified in the ENV variable
 On self-hosted installations, these limits are ignored.
 
-When creating a site they would also have to create a membership. Users who are newly created will also have their trial started
+When creating a site they would also have to create a membership. Users who are newly created will also have their trial started. 
+If a user upgrades themselves with a subscription, they can continue to use the site as normal.  
+
+There is another module of note in the `Billing` context called the `SiteLocker`.  
+A worker will periodically run to check if it will need to lock all of a user's sites if they are not in a trial period, or have no subscription.  
+Given a site is not locked, they can proceed to provide the website's stats to the user.  
