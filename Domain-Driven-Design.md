@@ -24,3 +24,11 @@ Ingredients for effective modeling
 Use of diagrams must educate developers what's pertinent to the domain, without overloading it with technical jargon that would not appear in code.  
 
 Any technical person contributing to the model must spend some time touching the code, whatever primary role he or she plays on the project. Anyone responsible for changing code must learn to express model through the code. Every developer must be involved in some level of discussion about the model and have contact with domain experts. Those who contribute in different ways must consciously engage those who touch the code in a dynamic exchange of model ideas through the UBIQUITOUS LANGUAGE.
+
+Complex applications should be kept in a Layered Architecture.
+Each layer must be cohesive and depends only on the layers below.
+
+![Layered Architecture](assets/images/domain-driven-design/layered-architecture.png)
+
+Most code related to the domain model is isolated to one layer and must be free from the UI, application or infrastructure code.  
+This will alow the model to become rich and clear enough to capture essential business knowledge.
