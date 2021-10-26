@@ -40,3 +40,24 @@ Each layer must be cohesive and depends only on the layers below.
 
 Most code related to the domain model is isolated to one layer and must be free from the UI, application or infrastructure code.  
 This will alow the model to become rich and clear enough to capture essential business knowledge.
+
+## Smart UI "Anti Pattern"
+
+A common anti-pattern is known as Smart UI.  
+This is done by putting all the business logic into the user interface. Chopping the application into small functions and implmenet them as separate user interfaces, and embedding business rules into them.  
+
+This has some advantages such as higher productivity and has a much lower barrier to entry for the codebase, however developers would find difficulty of integrations of applications aside from the database.  
+
+Another problem is that there is no reuse of behavior or abstraction of the business problem. Leading to dupliated rules in each operation in which they apply.
+
+# Models Expressed in Software
+
+There are three patterns of models;
+
+1. Entities
+2. Value Objects
+3. Services
+
+Entities represent objects with some form of continuity and identity, tracked through different states and even across implementations.  
+Value Objects describes a state of some other object.  
+Services offer a way to express as actions or operations to be done for a client on request.  
