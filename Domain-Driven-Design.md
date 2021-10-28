@@ -61,3 +61,37 @@ There are three patterns of models;
 Entities represent objects with some form of continuity and identity, tracked through different states and even across implementations.  
 Value Objects describes a state of some other object.  
 Services offer a way to express as actions or operations to be done for a client on request.  
+
+## Entities (Reference Objects)
+
+Some objects are not defined primarily by their attributes. They represent a thread of identity that runs through time and often across distinct representations.   
+Sometimes such an object must be matched with another object even though attributes differ. An object must be distinguished from other objects even though they might have the same attributes. Mistaken identity can lead to data corruption.
+
+## Value Objects
+
+Value objects represent a descriptive aspect of the domain with no conceptual identity.  
+They are instantiated to represent elements of the design that we care about only for what they are, not who or which they are.  
+(Basically anything that isn't pertinent to the application's domain, simply used and discarded or plain ol' objects)
+
+> Treat Value Objects as immutable. Don't give it any identity and avoid the design complexity necessary to maintain Entities
+
+There are considerations to making Value Objects mutable, such as if it changes frequently, or object creation or deletion is expensive. Then these values must not be shared to other entities in order to simplify implementations.  
+
+When associating Value Objects and entities, try to keep assocations to the minimum as they can be hard to maintain. Another case is having bidirectional assocations between two Value Objects should never happen, and if it seems necessary, perhaps there is an identity that hasn't been explicity recognized yet.  
+
+## Services  
+
+A Service is an operation offered as an interface that stands alone in the model, without encapsulating state, as Entities and Value Objects do. They represent an activity or a verb, that would otherwise be an unnatural responsibility for an Entity or Value Object.  
+E.g. A service that emails a user when their bank balance falls below a threshold.
+
+A good service has three characteristics;  
+
+1. The operation relates to a domain concept that is not a natural part of an Entity or Value Object.
+2. The interface is defined in terms of other elements of the domain model.
+3. The operation is stateless.
+
+## Modules
+
+Modules tell a story of the system and contain a choesive set of concepts.  
+This often yields low coupling between Modules, but if it doesn't, look for a way to change the model to disentangle the concepts, or search for an overlooked concept that mightb e the basis of a Module that would bring the elements together in a meaningful way.  
+Seek low coupling in the sense of concepts that can be understood and reasoned about independently of each other. Refine the model until partitions according to high-level domain concepts and the corresponding code is decoupled as well.  
