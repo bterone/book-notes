@@ -95,3 +95,36 @@ A good service has three characteristics;
 Modules tell a story of the system and contain a choesive set of concepts.  
 This often yields low coupling between Modules, but if it doesn't, look for a way to change the model to disentangle the concepts, or search for an overlooked concept that mightb e the basis of a Module that would bring the elements together in a meaningful way.  
 Seek low coupling in the sense of concepts that can be understood and reasoned about independently of each other. Refine the model until partitions according to high-level domain concepts and the corresponding code is decoupled as well.  
+
+## Agile Modules
+
+Modules need to coevolve with the model. Early mistakes leads to high coupling and difficult refactors.  
+
+## Pitfalls of Infrastructure Driven Packaging
+
+Many frameworks come with their own methods of bundling packages, such as the enforcement of Layered Architecture. However, knowing to resist them is just as important if it will skew the meaning of the package.   
+E.g: Each object broken into four tiers (Interface, persistence layer that handles mapping, application specific functionality layer, etc.).   
+Some languages require importing all these modules separately, leading writers to believe they are separate when they are co-dependant. Finding the data and behavior that defined one class takes a lot of mental effort.
+
+## Sticking With Model Driven Design When Mixing Paradigms
+
+When mixing non-object elements (E.g. Model Paradigms) into a predominatly object-oriented system;
+
+1. Don't fight the implementation paradigm; There's always another way to think about a domain. Find model concepts that fit the paradigm.
+2. Lean on the ubiquitous language; Even when there is no rigorous connection between tools, very consistent use of langauge can keep parts of the design from diverging.
+3. Don't get hung up on UML; Sometimes the fixation of a tool, like UML diagramming, leads people to distort the model to fit what can easily be drawn.
+4. Be skeptical; Is the tool really pulling its weight? Just because you have some rules, that doesn't necessarily mean you need the overhead of a rules engine. Rules can be expressed as objects. perhaps a little less neatly; multiple paradigms complicate matters enourmously.
+
+Before mixing a new paradigm, the dominant paradigm must be exhausted.
+
+# Life Cycle of a Domain Object
+
+## Aggregates
+
+Aggregates are a collection of entites. There is one root entity that is called from the outside appilcation and acts as an interface, a global identity.
+E.g. Car entity has wheel and tire entities. Car is the root entity and anything outside the aggregate boundry can't access the inside entities.
+This acts as a way to define boundries.
+
+## Factories
+
+
