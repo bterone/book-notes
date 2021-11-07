@@ -127,4 +127,89 @@ This acts as a way to define boundries.
 
 ## Factories
 
+When creation of an aggregate becomes to complicated, Factories provide encapsulation.  
 
+The two basic requirements for any good Factory are;
+
+1 . Each creation method is atomic and enforces all invariants of the created object or Aggregate. A Factory should only be able to produce an object in a consistent state. For an Entity, this means the creation of the entire Aggregate, with all invariants satisfied, but probably with optional elements still to be added. For an immutable Value Object, this means that all attributes are initialized to their correct final state. If the interface makes it possible to request an object that can’t be created correctly, then an exception should be raised or some other mechanism should be invoked that will ensure that no improper return value is possible.
+2. The Factory should be abstracted to the type desired, rather than the concrete class(es) created.
+
+### When a Constructor Is All You Need
+
+Avoid calling constructors within constructors of other classes. Constructors should be dead simple. Complex assemblies, especially of Aggregates, call for Factories. The threshold for choosing to use a little Factory method isn’t high.  
+
+### Designing the Interface
+
+Keep in mind these two points;
+
+- Each operation must be atomic: You have to pass in everything needed to create a complete product in a single interaction with the Factory. You also have to decide what will happen if creation fails, in the event that some invariant isn’t satisfied. You could throw an exception or just return a null. To be consistent, consider adopting a coding standard for failures in Factories.
+
+- The Factory will be coupled to its arguments: If you are not careful in your selection of input parameters, you can create a rat’s nest of dependencies. The degree of coupling will depend on what you do with the argument. If it is simply plugged into the product, you’ve created a modest dependency. If you are picking parts out of the argument to use in the construction, the coupling gets tighter.
+
+## Repositories
+
+A client needs a practical means of acquiring references to preexisting domain objects.  
+If the infrastructure makes it easy to do so, the developers of the client may add more traversable associations, muddling the model.  
+On the other hand, they may use queries to pull the exact data they need from the database, or to pull a few specific objects rather than navigating from Aggregate roots.  
+Domain logic moves into queries and client code, and the Entities and Value Objects become mere data containers.  
+The sheer technical complexity of applying most database access infrastructure quickly swamps the client code, which leads developers to dumb down the domain layer, which makes the model irrelevant.  
+
+A Repository represents all objects of a certain type as a conceptual set (usually emulated).  
+It acts like a collection, except with more elaborate querying capability. Objects of the appropriate type are added and removed, and the machinery behind the Repository inserts them or deletes them from the database.  
+This definition gathers a cohesive set of responsibilities for providing access to the roots of Aggregate from early life cycle through the end.  
+
+![Repository performing a search for client](assets/images/domain-driven-design/repository-search-for-client.png)
+
+### Advantages of Repositories:
+
+- They present clients with a simple model for obtaining persistent objects and managing their life cycle.
+- They decouple application and domain design from persistence technology, multiple database strategies, or even multiple data sources.
+- They communicate design decisions about object access.
+- They allow easy substitution of a dummy implementation, for use in testing (typically using an in- memory collection).
+
+# TODO: Research further into later. (Currently not relevant)
+
+# Using the Language: An Extended Example
+
+In order to implement a domain driven model to an existing application, we would do as follows;
+
+## Isolate the Domain
+
+To prevent responsibilties being mixed, we apply the layered archiecture to mark off a domain layer.
+E.g. A cargo management system would have;
+
+1. A Tracking Query that can access past and present handling of a particular Cargo
+2. AB ooking Application that allows a new Cargo to be registered and prepares the system for it
+3. An Incident Logging Application that can record each handling of the Cargo (providing the information that is found by the Tracking Query)
+
+## Distinguish Entities and Value Objects
+
+Anything not interchangeable is an Entity
+
+E.g. Customers, Cargo, Handling Events, Delivery History and Carrier Movement.
+
+Otherwise they are treated as Value Objects;
+
+E.g. Deliery Specificiation, Roles, etc.
+
+Below is a distiction of problematic assocations;
+
+![Cargo Assocation Example](assets/images/domain-driven-design/cargo-association-example.png)
+
+## Aggregate Boundries
+
+![Cargo Aggregate Boundries](assets/images/domain-driven-design/cargo-aggregate-boundries.png)
+
+## Selecting Repositories
+
+![Cargo Selecting Repositories](assets/images/domain-driven-design/cargo-repositories.png)
+
+## Modules in the Shipping Model
+
+The following diagram is a variation of an infrastructure-driven packaging problem when grouped in a pattern that doesn't convey the application story;
+
+![Cargo Infrastructure Driven Diagram](assets/images/domain-driven-design/cargo-bad-diagram.png)
+
+While a domain driven one is more straight-forward;
+
+![Cargo Domain Driven Diagram](assets/images/domain-driven-design/cargo-good-diagram.png)
