@@ -71,3 +71,6 @@ They also make use of setups within test descriptions to modify the context and 
 ```
 
 Keeps tests even more descriptive and precise. Follows Behavior Driven Development / Testing more closely due to setup acting as contexts.
+
+They seem to be using an HTTP interface to connect to their Elixir app using a clickhouse database driver.
+Clickhouse seems to be a high performance DB system for real time analytics using SQL.
