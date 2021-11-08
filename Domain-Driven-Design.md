@@ -213,3 +213,5 @@ The following diagram is a variation of an infrastructure-driven packaging probl
 While a domain driven one is more straight-forward;
 
 ![Cargo Domain Driven Diagram](assets/images/domain-driven-design/cargo-good-diagram.png)
+
+# TODO: Look into Anti Corruption Layer, and Enterprise Segments
