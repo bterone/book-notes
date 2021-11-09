@@ -215,3 +215,55 @@ While a domain driven one is more straight-forward;
 ![Cargo Domain Driven Diagram](assets/images/domain-driven-design/cargo-good-diagram.png)
 
 # TODO: Look into Anti Corruption Layer, and Enterprise Segments
+
+# Refactoring Toward Deeper Insight
+
+Developing useful models successfully has three points;
+
+1. Sophisticated domain models are achievable and worth the trouble.
+2. They are seldom developed except through an iterative process of refactoring, including close involvement of the domain experts with developers interested in learning about the domain.
+3. They may call for sophisticated design skills to implement and to use effectively.
+
+## Levels of Refactoring
+
+Refactoring is making continuous, small design changes that do not change functionality.  
+Technical refactoring focuses on mechanical changes to make code more readable, or enhance at a detailed level.  
+Refactoring to patterns are opportunities to apply established design patterns.  
+
+Refactoring based on domain is not only micro refactors, but toward an insightful model.
+
+## Opportunties
+
+When a breakthrough to a deeper model emerges, it has higher opportunity and risk, and may be at an inopportune time, but is important for progress.
+
+## Focus on Basics
+
+Rather than trying to bring a breakthrough, the possibility comes after many refactorings. Emerging after each successful refinement.
+
+# Making Implicit Concepts Explicit
+
+## Digging Out Concepts
+
+> Listen to the language the domain experts use. Are there terms that succinctly state something complicated? Are they correcting your word choice (perhaps diplomatically)? Do the puzzled looks on their faces go away when you use a particular phrase? These are hints of a concept that might benefit the model.
+
+These concepts may not always be `nouns as objects`. When the users or domain experts use vocabulary that is nowhere in the design, that is a warning sign. It is a doubly strong warning when both the developers and the domain experts are using terms that are not in the design.
+
+## Scrutinize Awkwardness
+
+Sometimes we may not find these concepts easily, so we need to dig in awkward parts of our design, procedures that do complicated things that are hard to explain, or where new requirements add complexity.  
+Sometimes it can be hard to recognize that there even is a missing concept. You may have objects doing all the work but find some of the responsibilities awkward. Or, if you do realize something is missing, a model solution may elude you.  
+
+## Contemplate Contradictions
+
+Different domain experts see things different ways based on their experience and needs. Even the same person provides information that is logically inconsistent after careful analysis.  
+Such pesky contradictions, which we encounter all the time when digging into program requirements, can be great clues to deeper models. Some are just variations in terminology or are based on misunderstanding. But there is a residue where two factual statements by experts seem to contradict.  
+
+> Reading a book about the domain subject can help grasp fundamental concepts that can enrich your model.
+
+>  Experimentation is the way to learn what works and doesn’t. Trying to avoid missteps in design will result in a lower quality result because it will be based on less experience. And it can easily take longer than a series of quick experiments.
+
+## Modeling Less Obvious Concepts
+
+The object-oriented paradigm leads us to look for and invent certain kinds of concepts. Things, even very abstract ones, are the meat of most object models, along with the actions those things take. These are the “nouns and verbs” that introductory object-oriented design books talk about. But other important categories of concepts can be made explicit in a model as well.
+
+### Explicit Constraints
