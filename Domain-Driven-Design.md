@@ -179,7 +179,7 @@ To prevent responsibilties being mixed, we apply the layered archiecture to mark
 E.g. A cargo management system would have;
 
 1. A Tracking Query that can access past and present handling of a particular Cargo
-2. AB ooking Application that allows a new Cargo to be registered and prepares the system for it
+2. A Booking Application that allows a new Cargo to be registered and prepares the system for it
 3. An Incident Logging Application that can record each handling of the Cargo (providing the information that is found by the Tracking Query)
 
 ## Distinguish Entities and Value Objects
@@ -267,3 +267,69 @@ Such pesky contradictions, which we encounter all the time when digging into pro
 The object-oriented paradigm leads us to look for and invent certain kinds of concepts. Things, even very abstract ones, are the meat of most object models, along with the actions those things take. These are the “nouns and verbs” that introductory object-oriented design books talk about. But other important categories of concepts can be made explicit in a model as well.
 
 ### Explicit Constraints
+
+Concepts can appear implicitly. E.g A bucket can only handle up to its capacity.  
+Expressing it explicitly can make this more obvious rather than being buried as classes get more complicated.  
+
+```java
+// Not explicit
+
+class Bucket {
+   private float capacity;
+   private float contents;
+   public void pourIn(float addedVolume) {
+      if (contents + addedVolume > capacity) {
+         contents = capacity;
+      } else {
+         contents = contents + addedVolume;
+      }
+} }
+
+// Explicit
+class Bucket {
+   private float capacity;
+   private float contents;
+   public void pourIn(float addedVolume) {
+      float volumePresent = contents + addedVolume;
+      contents = constrainedToCapacity(volumePresent);
+   }
+   private float constrainedToCapacity(float volumePlacedIn) {
+      if (volumePlacedIn > capacity) return capacity;
+      return volumePlacedIn;
+   } 
+}
+```
+
+This separate method gives the constraint some room to grow, but there are lots of cases when a constraint just can’t fit comfortably in a single method.  
+Or even if the method stays simple, it may call on information that the object doesn’t need for its primary responsibility.  
+
+Here are some warning signs that a constraint is distorting the design of its host object.  
+- Evaluating a constraint requires data that does not otherwise fit the object’s definition.
+- Related rules appear in multiple objects, forcing duplication or inheritance between objects that are not otherwise a family.
+- A lot of design and requirements conversation revolves around the constraints, but in the implementation, they are hidden away in procedural code.
+
+> When the constraints are obscuring the object’s basic responsibility, or when the constraint is prominent in the domain yet not prominent in the model, you can factor it out into an explicit object or even model it as a set of objects and relationships.
+
+### Processes as Domain Objects
+
+Procedures should not be the prominent aspect of our models. Objects are meant to encapsulate the procedures and let us think about their goals or intentions instead.  
+A Service is one way of expressing a process explicitly, while encapsulating complex algorithms.
+
+When there is more than one way to carry out a process, another approach is to make the algorithm itself, or some key part of it, an object in its own right. The choice between processes becomes a choice between these objects, each of which represents a different Strategy.
+
+### Specification
+
+A Specification states a constraint on the state of another object, which may or may not be present. It has multiple uses, but one that conveys the most basic concept is that a Specification can test any object to see if it satisfies the specified criteria.
+
+> Create explicit predicate-like VALUE OBJECTS for specialized purposes. A SPECIFICATION is a predicate that determines if an object does or does not satisfy some criteria.
+
+Uses for Specification objects.
+- To validate an object to see if it fulfills some need or is ready for some purpose
+- To select an object from a collection (as in the case of querying for overdue invoices) 
+- To specify the creation of a new object to fit some need
+
+![Specification Pattern](assets/images/domain-driven-design/specification-pattern.png)
+
+### More information on Applying and Implementing SPECIFICATION in Page 169 of DDD
+
+# Supple Design
