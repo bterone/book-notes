@@ -167,7 +167,7 @@ This definition gathers a cohesive set of responsibilities for providing access 
 - They communicate design decisions about object access.
 - They allow easy substitution of a dummy implementation, for use in testing (typically using an in- memory collection).
 
-# TODO: Research further into later. (Currently not relevant)
+**TODO: Research further into later. (Currently not relevant)**
 
 # Using the Language: An Extended Example
 
@@ -214,7 +214,7 @@ While a domain driven one is more straight-forward;
 
 ![Cargo Domain Driven Diagram](assets/images/domain-driven-design/cargo-good-diagram.png)
 
-# TODO: Look into Anti Corruption Layer, and Enterprise Segments
+**TODO: Look into Anti Corruption Layer, and Enterprise Segments**
 
 # Refactoring Toward Deeper Insight
 
@@ -330,7 +330,7 @@ Uses for Specification objects.
 
 ![Specification Pattern](assets/images/domain-driven-design/specification-pattern.png)
 
-### More information on Applying and Implementing SPECIFICATION in Page 169 of DDD
+**TODO: More information on Applying and Implementing SPECIFICATION in Page 169 of DDD**
 
 # Supple Design
 
@@ -390,7 +390,7 @@ Value Objects are immutable, which implies that, apart from initializers called 
 
 ## Declarative Design
 
-## More about declaritive design in Specifications on Page 199 of DDD
+**TODO: More about declaritive design in Specifications on Page 199 of DDD**
 
 ## Angles of Attack
 
@@ -404,3 +404,5 @@ Creating a tight conceptual framework from scratch is something you can’t do e
 Many business applications involve accounting, for example. Accounting defines a well- developed set of ENTITIES and rules that make for an easy adaptation to a deep model and a supple design.  
 
 Another good example is math. Many domains include math somewhere. Look for it. Dig it out. Specialized math is clean, combinable by clear rules, and people find it easy to understand.  
+
+# Applying Analysis Patterns
