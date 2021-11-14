@@ -333,3 +333,74 @@ Uses for Specification objects.
 ### More information on Applying and Implementing SPECIFICATION in Page 169 of DDD
 
 # Supple Design
+
+Software is built to serve users, but it is also to serve developers as well. Developers might take two roles, creating a system or using it, sometimes switching between the two.
+
+![Patterns for supple design](assets/images/domain-driven-design/patterns-for-supple-design.png)
+
+## Intention-Revealing Interfaces
+
+> If a developer must consider the implementation of a component in order to use it, the value of encapsulation is lost. If someone other than the original developer must infer the purpose of an object or operation based on its implementation, that new developer may infer a purpose that the operation or class fulfills only by chance. If that was not the intent, the code may work for the moment, but the conceptual basis of the design will have been corrupted, and the two developers will be working at cross-purposes.
+
+> Name classes and operations to describe their effect and purpose, without reference to the means by which they do what they promise.
+
+Names should conform to the modeling language we built, mentioned across the previous chapters.
+
+> Write a test for a behavior before creating it, to force your thinking into client developer mode.
+
+## Side-Effect-Free Functions
+
+Operations can be broadly divided into two categories, commands and queries.
+
+- Queries obtain information from a system, possibly by simply accessing data in a variable, possibly performing a calculation based on that data.
+- Commands (also known as modifiers) are operations that affect some change to the systems (for a simple example, by setting a variable).
+
+> Interactions of multiple rules or compositions of calculations become extremely difficult to predict. The developer calling an operation must understand its implementation and the implementation of all its delegations in order to anticipate the result.
+> The usefulness of any abstraction of interfaces is limited if the developers are forced to pierce the veil.
+
+Operations that return results without producing side effects are called functions.  
+A function can be called multiple times and return the same value each time.  
+A function can call on other functions without worrying about the depth of nesting. Functions are much easier to test than operations that have side effects. For these reasons, functions lower risk.  
+
+Obviously, you can’t avoid commands in most software systems, but the problem can be mitigated in two ways. First, you can keep the commands and queries strictly segregated in different operations. Ensure that the methods that cause changes do not return domain data and are kept as simple as possible.  
+
+Second, there are often alternative models and designs that do not call for an existing object to be modified at all. Instead, a new Value Object, representing the result of the computation, is created and returned. A Value Object can be created in answer to a query, handed off, and forgotten—unlike an Entity, whose life cycle is carefully regulated.  
+
+Value Objects are immutable, which implies that, apart from initializers called only during creation, all their operations are functions.  
+
+## Assertions
+
+> When the side effects of operations are only defined implicitly by their implementation, designs with a lot of delegation become a tangle of cause and effect. The only way to understand a program is to trace execution through branching paths. The value of encapsulation is lost. The necessity of tracing concrete execution defeats abstraction.  
+
+> State post-conditions of operations and invariants of classes and Aggregates. If Assertions cannot be coded directly in your programming language, write automated unit tests for them. Write them into documentation or diagrams where it fits the style of the project’s development process.  
+
+> Seek models with coherent sets of concepts, which lead a developer to infer the intended Assertions, accelerating the learning curve and reducing the risk of contradictory code.  
+
+## Conceptual Contours
+
+> Decompose design elements (operations, interfaces, classes, and Aggregates) into cohesive units, taking into consideration your intuition of the important divisions in the domain.
+
+## Standalone classes
+
+> Low coupling is fundamental to object design. When you can, go all the way. Eliminate all other concepts from the picture. Then the class will be completely self-contained and can be studied and understood alone. Every such self-contained class significantly eases the burden of understanding a Module.
+
+## Closure of Operations
+
+> Where it fits, define an operation whose return type is the same as the type of its argument(s). If the implementer has state that is used in the computation, then the implementer is effectively an argument of the operation, so the argument(s) and return value should be of the same type as the implementer. Such an operation is closed under the set of instances of that type. A closed operation provides a high-level interface without introducing any dependency on other concepts.
+
+## Declarative Design
+
+## More about declaritive design in Specifications on Page 199 of DDD
+
+## Angles of Attack
+
+### Carve Off Subdomains
+
+To make a system supple, pick some aspects of the system to be separated into a model or simple framework that allows us to declare rules. With each step, not only is the module clean, but the part left behind is smaller and cleaner.  
+
+### Draw on Established Formalisms, When You Can
+
+Creating a tight conceptual framework from scratch is something you can’t do every day. But you can often use and adapt conceptual systems that are long established in your domain or others.  
+Many business applications involve accounting, for example. Accounting defines a well- developed set of ENTITIES and rules that make for an easy adaptation to a deep model and a supple design.  
+
+Another good example is math. Many domains include math somewhere. Look for it. Dig it out. Specialized math is clean, combinable by clear rules, and people find it easy to understand.  
