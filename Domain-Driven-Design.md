@@ -406,3 +406,49 @@ Many business applications involve accounting, for example. Accounting defines a
 Another good example is math. Many domains include math somewhere. Look for it. Dig it out. Specialized math is clean, combinable by clear rules, and people find it easy to understand.  
 
 # Applying Analysis Patterns
+
+> Analysis patterns are groups of concepts that represent a common construction in business modeling. It may be relevant to only one domain or it may span many domains. [Fowler 1997, p. 8, Analysis Patterns: Reusable Object Models]
+
+# Relating Design Patterns to the Model
+
+> Point of view affects one’s interpretation of what is and isn’t a pattern. One person’s pattern can be another person’s primitive building block.
+
+## Strategy (a.k.a. Policy)
+
+![Strategy Pattern](assets/images/domain-driven-design/strategy-pattern.png)
+
+> Define a family of algorithms, encapsulate each one, and make them interchangeable. Strategy lets the algorithm vary independently from clients that use it.
+
+> Domain models contain processes that are not technically motivated but actually meaningful in the problem domain. When alternative processes must be provided, the complexity of choosing the appropriate process combines with the complexity of the multiple processes themselves, and things get out of hand.
+
+> Factor the varying part of a process into a separate “strategy” object in the model. Factor apart a rule and the behavior it governs. Implement the rule or substitutable process following the Strategy design pattern. Multiple versions of the strategy object represent different ways the process can be done.
+
+## Composite
+
+![Composite Pattern](assets/images/domain-driven-design/composite-pattern.png)
+
+> Compose objects into tree structures to represent part-whole hierarchies. Composite lets clients treat individual objects and compositions of objects uniformly.
+
+> Define an abstract type that encompasses all members of the Composite. Methods that return information are implemented on containers to return aggregated information about their contents. “Leaf” nodes implement those methods based on their own values. Clients deal with the abstract type and have no need to distinguish leaves from containers.
+
+# Refactoring Toward Deeper Insight
+
+Refactoring toward deeper insight is a multifaceted process. Seeking insight into the domain creates a broader context for the process of refactoring.  
+
+## Initiation
+
+Refactoring toward deeper insight can begin in many ways. It may be a response to a problem in the code— some complexity or awkwardness. Perhaps a concept is missing. Maybe some relationship is wrong. This same realization could come when the code looks tidy, if the language of the model seems disconnected from the domain experts, or if new requirements are not fitting in naturally.  
+Seeing the trouble spot is often the hardest and most uncertain part. After that, developers can systematically seek out the elements of a new model. They can brainstorm with colleagues and domain experts on systematized knowledge written as analysis patterns or design patterns.
+
+**TODO: More about building teams, prior art, etc. for modeling domain on Page 233**
+
+## Timing
+
+> If you wait until you can make a complete justification for a change, you’ve waited too long.
+
+Refactor when;
+- The design does not express the team’s current understanding of the domain;
+- Important concepts are implicit in the design (and you see a way to make them explicit); or
+- You see an opportunity to make some important part of the design suppler.
+
+*Don’t be absolute about things, but push beyond the comfort zone in the direction of favoring refactoring.*
