@@ -452,3 +452,63 @@ Refactor when;
 - You see an opportunity to make some important part of the design suppler.
 
 *Don’t be absolute about things, but push beyond the comfort zone in the direction of favoring refactoring.*
+
+# Maintaining Model Integrity
+
+On large scale, or legacy projects, models follow their own internal logic and meaning. A "charge" model could mean something entirely different for a current feature compared to existing code.
+**Bounded Contexts** defines the range of applicability of each model, while **Context Maps** gives a global overview of the project's contexts and the relationships between them.
+
+![Integrity Patterns](assets/images/domain-driven-design/integrity-patterns.png)
+
+## Bounded Context
+
+> Multiple models are in play on any large project. Yet when code based on distinct models is combined, software becomes buggy, unreliable, and difficult to understand. Communication among team members becomes confused. It is often unclear in what context a model should not be applied.
+
+> Explicitly define the context within which a model applies. Explicitly set boundaries in terms of team organization, usage within specific parts of the application, and physical manifestations such as code bases and database schemas. Keep the model strictly consistent within these bounds, but don’t be distracted or confused by issues outside.
+
+## Recognizing Splinters Within a Bounded Context
+
+When coded interfaces don't match up, or unexpected behavior is a likely sign of unrecogized model differences.  
+Combining elements of distinct models causes two categories of problems: duplicate concepts and false cognates.  
+
+Duplication of concepts means that there are two model elements (and attendant implementations) that actually represent the same concept.
+False cognates is when two people who are using the same term (or implemented object) think they are talking about the same thing, but are not.
+
+## Continous Integration
+
+When a number of people are working in the same Bounded Context, there is a strong tendency for the model to fragment. The bigger the team, the bigger the problem, but as few as three or four people can encounter serious problems. Yet breaking down the system into ever-smaller Context eventually loses a valuable level of integration and coherency.
+
+Continous Integration means that all work within the context is being merged and made consistent frequently enough that when splinters happen they are caught and corrected quickly. Continous Integration, operates at two levels:
+
+1. The integration of model concepts
+2. The integration of the implementation
+
+## Context Map
+
+![Context Map](assets/images/domain-driven-design/context-map.png)
+
+
+## Shared Kernel
+
+![Shared Kernel](assets/images/domain-driven-design/shared-kernel.png)
+
+> Uncoordinated teams working on closely related applications can go racing forward for a while, but what they produce may not fit together. They can end up spending more on translation layers and retrofitting than they would have on Continuous Integration in the first place, meanwhile duplicating effort and losing the benefits of a common UBIQUITOUS LANGUAGE.
+
+> Designate some subset of the domain model that the two teams agree to share. Of course this includes, along with this subset of the model, the subset of code or of the database design associated with that part of the model. This explicitly shared stuff has special status, and shouldn’t be changed without consultation with the other team.
+
+Merges on separate teams happens daily, while kernel integrations happen maybe weekly.
+
+## Customer/Supplier Development Teams
+
+Often one subsystem essentially feeds another; the “downstream” component performs analysis or other functions that feed back very little into the “upstream” component, and all dependencies go one way.
+
+Upstream and downstream subsystems separate naturally into two Bounded Contexts.
+
+> Establish a clear customer/supplier relationship between the two teams. In planning sessions, make the downstream team play the customer role to the upstream team. Negotiate and budget tasks for downstream requirements so that everyone understands the commitment and schedule.
+
+> Jointly develop automated acceptance tests that will validate the interface expected. Add these tests to the upstream team’s test suite, to be run as part of its continuous integration. This testing will free the upstream team to make changes without fear of side effects downstream.
+
+There are two crucial elements to this pattern.
+- The relationship must be that of customer and supplier, with the implication that the customer’s needs are paramount. Because the downstream team is not the only customer, the different customers’ demands have to be balanced in negotiation—but they remain priorities. This situation is in contrast to the poor-cousin relationship that often emerges, in which the downstream team has to come begging to the upstream team for its needs.
+
+- There must be an automated test suite that allows the upstream team to change its code without fear of breaking the downstream, and lets the downstream team concentrate on its own work without constantly monitoring the upstream team.
