@@ -631,3 +631,30 @@ Once running;
 6. Consider excising the now-unused modules of the legacy system, though this may not turn out to be practical. Ironically, the better designed the legacy system is, the easier it will be to phase it out. But badly designed software is hard to dismantle a little at a time. It may be possible to just ignore the unused parts until a later time when the remainder has been phased out and the whole thing can be switched off.
 
 # Distillation
+
+Distillation is the process of separating the components of a mixture to extract the essence in a form that makes it more valuable and useful. A model is a distillation of knowledge. With every refactoring to deeper insight, we abstract some crucial aspect of domain knowledge and priorities.
+
+![Strategic Distillation](assets/images/domain-driven-design/strategic-distillation.png)
+
+## Core Domain
+
+A system that is hard to understand is hard to change, and hard to forsee its effects. When developers confine their work to specific modules, it further reduces knowledge transfer. With the compartmentalization of work, smooth integration of the system suffers, and flexibility in assigning work is lost. 
+
+> The harsh reality is that not all parts of the design are going to be equally refined. Priorities must be set. To make the domain model an asset, the model’s critical core has to be sleek and fully leveraged to create application functionality.
+
+> Boil the model down. Find the CORE DOMAIN and provide a means of easily distinguishing it from the mass of supporting model and code. Bring the most valuable and specialized concepts into sharp relief. Make the CORE small.
+
+Distilling the CORE DOMAIN is not easy, but it does lead to some easy decisions. You’ll put a lot of effort into making your CORE distinctive, while keeping the rest of the design as generic as is practical. If you need to keep some aspect of your design secret as a competitive advantage, it is the CORE DOMAIN. There is no need to waste effort concealing the rest.
+
+
+### Choosing the CORE
+
+One application’s CORE DOMAIN is another application’s generic supporting component. Still, throughout one project, and usually throughout one company, a consistent CORE can be defined. Like every other part of the design, the identification of the CORE DOMAIN should evolve through iterations. The importance of a particular set of relationships might not be apparent at first. The objects that seem obviously central at first may turn out to have supporting roles.
+
+There is a more fundamental reason for caution: The greatest value of custom software comes from the total control of the CORE DOMAIN. A well-designed framework may be able to provide high-level abstractions that you can specialize for your use. It may save you from developing the more generic parts and leave you free to concentrate on the CORE. But if it constrains you more than that, then there are three likely possibilities.
+
+1. You are losing an essential software asset. Back off restrictive frameworks in your CORE DOMAIN
+2. The area treated by the framework is not as pivotal as you thought. Redraw the boundaries of the CORE DOMAIN to the truly distinctive part of the model.
+3. You don’t have special needs in your CORE DOMAIN. Consider a lower-risk solution, such as purchasing software to integrate with your applications.
+
+## An Escalation of Distillations
