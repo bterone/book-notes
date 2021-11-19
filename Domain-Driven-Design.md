@@ -512,3 +512,122 @@ There are two crucial elements to this pattern.
 - The relationship must be that of customer and supplier, with the implication that the customer’s needs are paramount. Because the downstream team is not the only customer, the different customers’ demands have to be balanced in negotiation—but they remain priorities. This situation is in contrast to the poor-cousin relationship that often emerges, in which the downstream team has to come begging to the upstream team for its needs.
 
 - There must be an automated test suite that allows the upstream team to change its code without fear of breaking the downstream, and lets the downstream team concentrate on its own work without constantly monitoring the upstream team.
+
+## Conformist
+
+> When using an off-the-shelf component that has a large interface, you should typically Conform to the model implicit in that component. Because the component and the application are clearly different Bounded Contexts, based on team organization and control, adapters may be needed for minor format changes, but the model should be equivalent. Otherwise, you should question the value of having the component. If it is good enough to give you value, there is probably knowledge crunched into its design. Within its narrow sphere, it may well be much more advanced than your own understanding. Your model presumably extends beyond the scope of this component, and your own concepts will evolve for those other parts. But where they connect, your model is a Conformist, following the lead of the component’s model. In effect, you could be dragged into a better design.
+
+
+Eliminate the complexity of translation between Bounded Contexts by slavishly adhering to the model of the upstream team. Although this cramps the style of the downstream designers and probably does not yield the ideal model for the application, choosing Conformity enormously simplifies integration. Also, you will share a UBIQUITOUS LANGUAGE with your supplier team. The supplier is in the driver’s seat, so it is good to make communication easy for them. Altruism may be sufficient to get them to share information with you.
+
+## Anticorruption Layer
+
+> When a new system is being built that must have a large interface with another, the difficulty of relating the two models can eventually overwhelm the intent of the new model altogether, causing it to be modified to resemble the other system’s model, in an ad hoc fashion. The models of legacy systems are usually weak, and even the exception that is well developed may not fit the needs of the current project. Yet there may be a lot of value in the integration, and sometimes it is an absolute requirement.
+
+> Create an isolating layer to provide clients with functionality in terms of their own domain model. The layer talks to the other system through its existing interface, requiring little or no modification to the other system. Internally, the layer translates in both directions as necessary between the two models.
+
+### Designing the Interface of the Anticorruption Layer
+
+The public interface of the Anticorruption layer usually appears as a set of Services, althrough occasionally it can take the form of an Entity.
+
+### Implementing the Anticorruption Layer
+
+One way of organizing the design of the Anticorruption Layer is as a combination of Facades, Adapters, and translators.
+
+A Facade is an alternative interface for a subsystem that simplifies access for the client and makes the subsystem easier to use.
+Because we know exactly what functionality of the other system we want to use, we can create a FACADE that facilitates and streamlines access to those features and hides the rest. The Facade does not change the model of the underlying system. It should be written strictly in accordance with the other system’s model. Otherwise, you will at best diffuse responsibility for translation into multiple objects and overload the Facade and at worst end up creating yet another model, one that doesn’t belong to the other system or your own Bounded Context. The Facade belongs in the Bounded Context of the other system. It just presents a friendlier face specialized for your needs.
+
+An Adapter is a wrapper that allows a client to use a different protocol than that understood by the implementer of the behavior. When a client sends a message to an Adapter, it is converted to a semantically equivalent message and sent on to the “adaptee.” The response is converted and passed back. 
+
+For each Service we define, we need an Adapter that supports the Service’s interface and knows how to make equivalent requests of the other system or its Facade.
+
+![Anticorruption Layer](assets/images/domain-driven-design/anticorruption-layer.png)
+
+Note that building an Anticorruption Layer, especially with continous integration, and maybe even another sub-system comes with a cost.
+
+## Separate Ways
+
+Integration is always expensive. Sometimes the benefit is small.
+
+> Declare a Bounded Context to have no connection to the others at all, allowing developers to find simple, specialized solutions within this small scope.
+
+## Open Host Service
+
+> Define a protocol that gives access to your subsystem as a set of Services. Open the protocol so that all who need to integrate with you can use it. Enhance and expand the protocol to handle new integration requirements, except when a single team has idiosyncratic needs. Then, use a one-off translator to augment the protocol for that special case so that the shared protocol can stay simple and coherent.
+
+## Published Language
+
+> Use a well-documented shared language that can express the necessary domain information as a common medium of communication, translating as necessary into and out of that language.
+
+## Choosing Your Model Context Strategy
+
+Always draw the Context Map to reflect the current situation at any given time. Now choose Context boundaries and relationships.
+
+### Team Decision or Higher
+
+First, teams have to make decisions about where to define Bounded Context and what sort of relationships to have between them.
+
+### Putting Ourselves in Context
+
+In a typical case, the system under design is going to get carved into one or two Bounded that the main development teams will be working on, perhaps with another Context or two in a supporting role. In addition to that are the relationships between these Contexts and the external systems.
+
+### Transforming Boundaries
+
+When drawing the boundries of Bounded Contexts;
+
+Favoring Larger Bounded Contexts
+• Flow between user tasks is smoother when more is handled with a unified model.
+• It is easier to understand one coherent model than two distinct ones plus mappings. 
+• Translation between two models can be difficult (sometimes impossible).
+• Shared language fosters clear team communication.
+
+Favoring Smaller Bounded Contexts
+• Communication overhead between developers is reduced.
+• CONTINUOUS INTEGRATION is easier with smaller teams and code bases.
+• Larger contexts may call for more versatile abstract models, requiring skills that are in short supply.
+• Different models can cater to special needs or encompass the jargon of specialized groups of users, along with specialized dialects of the UBIQUITOUS LANGUAGE.
+
+### Accepting That Which We Cannot Change: Delineating the External Systems
+
+It is best to start with the easiest decisions. Some subsystems will clearly not be in any Bounded Context for the system under development. Examples would be major legacy systems not immediately replaced, or external systems that provide services to us.
+
+It is convenient to think of each of these systems as constituting its own Bounded Context, but most external systems only weakly meet the definition. First, a Bounded Context is defined by an intention to unify the model within certain boundaries. You may have control of maintenance of the legacy system, in which case you can declare the intention, or the legacy team may be well coordinated and be carrying out an informal form of Continous Integration.
+
+### Relationships with the External Systems
+
+There are three patterns that can apply here
+
+- Separate Ways: 
+If we don't need integration and gives the user easy access to both systems. Integration is expensive and distracting, but be cautious when deciding this option.  
+
+- Conformist: 
+Creativity and options would be limited. When deciding this pattern, we restrict ourselves to extension only, with no modification of the existing model. (such as large legacy systems)
+If there is a discernable domain model behind the other system, you can improve your implementation by making that model more explicit than it was in the old system, just as long as you strictly conform to the old model.
+
+- Anticorruption Layer:
+When the functionality of the system under design is going to be more involved than an extension to an existing system, where your interface to the other system is small, or where the other system is very badly designed, you’ll really want your own Bounded Context, which means building a translation layer, or even an Anticorruption Layer.
+
+### The System Under Design
+
+As the team grows larger, CONTINUOUS INTEGRATION may become difficult. You may look for a SHARED KERNEL and break off relatively independent sets of functionality into separate BOUNDED CONTEXTS, each with fewer than ten people. If all of the dependencies between two of these go in one direction, you could set up CUSTOMER/SUPPLIER DEVELOPMENT TEAMS.
+
+![Demands of Context Relationship Patterns](assets/images/domain-driven-design/demands-of-context-relationship-patterns.png)
+
+## Transformations
+
+**TODO: Look into transforming patterns from one to another in Page 276**
+
+### Phasing Out a Legacy System
+
+In any given iteration:
+1. Identify specific functionality of the legacy that could be added to one of the favored systems within a single iteration.
+2. Identify additions that will be required in the ANTICORRUPTION LAYER. 
+3. Implement.
+4. Deploy.
+
+Once running;
+
+5. Identify any unnecessary parts of the ANTICORRUPTION LAYER and remove them.
+6. Consider excising the now-unused modules of the legacy system, though this may not turn out to be practical. Ironically, the better designed the legacy system is, the easier it will be to phase it out. But badly designed software is hard to dismantle a little at a time. It may be possible to just ignore the unused parts until a later time when the remainder has been phased out and the whole thing can be switched off.
+
+# Distillation
