@@ -657,4 +657,120 @@ There is a more fundamental reason for caution: The greatest value of custom sof
 2. The area treated by the framework is not as pivotal as you thought. Redraw the boundaries of the CORE DOMAIN to the truly distinctive part of the model.
 3. You don’t have special needs in your CORE DOMAIN. Consider a lower-risk solution, such as purchasing software to integrate with your applications.
 
-## An Escalation of Distillations
+### An Escalation of Distillations
+
+A simple DOMAIN VISION STATEMENT communicates the basic concepts and their value with a minimum investment. The HIGHLIGHTED CORE can improve communication and help guide decision making—and still requires little or no modification to the design.
+
+More aggressive refactoring and repackaging explicitly separate GENERIC SUBDOMAINS, which can then be dealt with individually. COHESIVE MECHANISMS can be encapsulated with versatile, communicative, and supple design. Removing these distractions disentangles the CORE.
+
+Repackaging a SEGREGATED CORE makes the CORE directly visible, even in the code, and facilitates future work on the CORE model.
+
+And most ambitious is the ABSTRACT CORE, which expresses the most fundamental concepts and relationships in a pure form (and requires extensive reorganizing and refactoring of the model).
+
+### Generic Subdomains
+
+Some parts of the model add complexity without capturing or communicating specialized knowledge. Anything extraneous makes the CORE DOMAIN harder to discern and understand. The model clogs up with general principles everyone knows or details that belong to specialties which are not your primary focus but play a supporting role. Yet, however generic, these other elements are essential to the functioning of the system and the full expression of the model. 
+
+> Identify cohesive subdomains that are not the motivation for your project. Factor out generic models of these subdomains and place them in separate MODULES. Leave no trace of your specialties in them.
+> Once they have been separated, give their continuing development lower priority than the CORE DOMAIN, and avoid assigning your core developers to the tasks (because they will gain little domain knowledge from them). Also consider off-the-shelf solutions or published models for these GENERIC SUBDOMAINS.
+
+#### Option 1: An Off-the-Shelf Solution
+
+Advantages: 
+- Less code to develop.
+- Maintenance burden externalized.
+- Code is probably more mature, used in multiple places, and therefore more bulletproof and complete than homegrown code.
+
+Disadvantages:
+- You still have to spend the time to evaluate it and understand it before using it.
+- Quality control being what it is in our industry, you can’t count on it being correct and stable.
+- It may be overengineered for your purposes; integration could be more work than a minimalist homegrown implementation.
+- Foreign elements don’t usually integrate smoothly. There may be a distinct BOUNDED CONTEXT. Even if not, it may be difficult to smoothly reference ENTITIES from your other packages.
+- It may introduce platform dependencies, compiler version dependencies, and so on.
+
+#### Option 2: A Published Design or Model
+
+Advantages:
+- More mature than a homegrown model and reflects many people’s insights
+- Instant, high-quality documentation
+
+Disadvantage:
+- May not quite fit your needs or may be overengineered for your needs
+
+#### Option 3: An Outsourced Implementation
+
+Advantages:
+- Keeps core team free to work on the CORE DOMAIN, where most knowledge is needed and accumulated.
+- Allows more development to be done without permanently enlarging the team, but without dissipating knowledge of the CORE DOMAIN.
+- Forces an interface-oriented design, and helps keep the subdomain generic, because the specification is being passed outside.
+
+Disadvantages:
+- Still requires time from the core team, because the interface, coding standards, and any other important aspects need to be communicated.
+- Incurs significant overhead of transferring ownership back inside, because code has to be understood. (Still, overhead is less than for specialized subdomains, because a generic model presumably requires no special background to understand.)
+- Code quality can vary. This could be good or bad, depending on the relative caliber of the two teams.
+
+Automated tests can play an important role in outsourcing. The implementers should be required to provide unit tests for the code they deliver. A really powerful approach—one that helps ensure a degree of quality, clarifies the spec, and smooths reintegration—is to specify or even write automated acceptance tests for the outsourced components. Also, “outsourced implementation” can be an excellent combination with “published design or model.”
+
+#### Option 4: An In-House Implementation
+
+Advantages:
+- Easy integration.
+- You get just what you want and nothing extra. 
+- Temporary contractors can be assigned.
+
+Disadvantages:
+- Ongoing maintenance and training burden.
+- It is easy to underestimate the time and cost of developing such packages.
+
+GENERIC SUBDOMAINS are the place to try to apply outside design expertise, because they do not require deep understanding of your specialized CORE DOMAIN, and they do not present a major opportunity to learn that domain. Confidentiality is of less concern, because little proprietary information or business practice will be involved in such modules. A GENERIC SUBDOMAIN lessens the training burden for those not committed to deep knowledge of the domain.
+
+### Generic Doesn’t Mean Reusable
+
+Off-the-shelf solutions may or may not make sense for a particular situation, but assuming that you are implementing the code yourself, in-house or outsourced, you should specifically not concern yourself with the reusability of that code. This would go against the basic motivation of distillation: that you should be applying as much of your effort to the CORE DOMAIN as possible and investing in supporting GENERIC SUB-DOMAINS only as necessary.
+
+Though you should seldom design for reusability, you must be strict about keeping within the generic concept.
+
+Introducing industry-specific model elements will have two costs. First, it will impede future development. Although you need only a small part of the subdomain model now, your needs will grow. By introducing anything to the design that is not part of the concept, you make it much more difficult to expand the system cleanly without completely rebuilding the older part and redesigning the other modules that use it.
+
+The second, and more important, reason is that those industry-specific concepts belong either in the CORE DOMAIN or in their own, more specialized, subdomains, and those specialized models are even more valuable than the generic ones.
+
+### Project Risk Management
+
+Agile processes typically call for managing risk by tackling the riskiest tasks early. This initial system often proves a technical architecture, and it is tempting to build a peripheral system that handles some supporting GENERIC SUBDOMAIN because these are usually easier to analyze. But be careful; this can defeat the purpose of risk management.
+
+Projects face risk from both sides, with some projects having greater technical risks and others greater domain modeling risks. Therefore, except when the team has proven skills and the domain is very familiar, the first-cut system should be based on some part of the CORE DOMAIN, however simple. 
+
+## Domain Vision Statement
+
+At the beginning of a project, the model usually doesn’t even exist, yet the need to focus its development is already there. In later stages of development, there is a need for an explanation of the value of the system that does not require an in-depth study of the model. Also, the critical aspects of the domain model may span multiple BOUNDED CONTEXTS, but by definition these distinct models can’t be structured to show their common focus.  
+
+Many project teams write “vision statements” for management. The best of these documents lay out the specific value the application will bring to the organization. Some mention the creation of the domain model as a strategic asset. Usually the vision statement document is abandoned after the project gets funding, and it is never used in the actual development process or even read by the technical staff.
+
+A DOMAIN VISION STATEMENT is modeled after such documents, but it focuses on the nature of the domain model and used during all phases of development.
+
+> Write a short description (about one page) of the CORE DOMAIN and the value it will bring, the “value proposition.” Ignore those aspects that do not distinguish this domain model from others. Show how the domain model serves and balances diverse interests. Keep it narrow. Write this statement early and revise it as you gain new insight.
+
+## Highlighted Core
+
+> Even though team members may know broadly what constitutes the CORE DOMAIN, different people won’t pick out quite the same elements, and even the same person won’t be consistent from one day to the next. The mental labor of constantly filtering the model to identify the key parts absorbs concentration better spent on design thinking, and it requires comprehensive knowledge of the model. The CORE DOMAIN must be made easier to see.
+
+### The Distillation Document
+
+It can be as simple as a list of the most essential conceptual objects. It can be a set of diagrams focused on those objects, showing their most critical relationships. It can walk through the fundamental interactions at an abstract level or by example. It can use UML class or sequence diagrams, nonstandard diagrams particular to the domain, carefully worded textual explanations, or combinations of these. 
+
+A distillation document is not a complete design document. It is a minimalist entry point that delineates and explains the CORE and suggests reasons for closer scrutiny of particular pieces. 
+
+Write a very brief document (three to seven sparse pages) that describes the CORE DOMAIN and the primary interactions among CORE elements.
+
+All the usual risks of separate documents apply.
+- The document may not be maintained.
+- The document may not be read.
+- By multiplying the information sources, the document may defeat its own purpose of cutting through complexity.
+
+The best way to limit these risks is to be absolutely minimalist. Staying away from mundane detail and focusing on the central abstractions and their interactions allows the document to age more slowly, because this level of the model is usually more stable.
+
+### The Flagged CORE
+
+> Flag each element of the CORE DOMAIN within the primary repository of the model, without particularly trying to elucidate its role. Make it effortless for a developer to know what is in or out of the CORE.
+
+### The Distillation Document as Process Tool
