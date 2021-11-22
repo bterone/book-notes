@@ -535,7 +535,7 @@ The public interface of the Anticorruption layer usually appears as a set of Ser
 One way of organizing the design of the Anticorruption Layer is as a combination of Facades, Adapters, and translators.
 
 A Facade is an alternative interface for a subsystem that simplifies access for the client and makes the subsystem easier to use.
-Because we know exactly what functionality of the other system we want to use, we can create a FACADE that facilitates and streamlines access to those features and hides the rest. The Facade does not change the model of the underlying system. It should be written strictly in accordance with the other system’s model. Otherwise, you will at best diffuse responsibility for translation into multiple objects and overload the Facade and at worst end up creating yet another model, one that doesn’t belong to the other system or your own Bounded Context. The Facade belongs in the Bounded Context of the other system. It just presents a friendlier face specialized for your needs.
+Because we know exactly what functionality of the other system we want to use, we can create a Facade that facilitates and streamlines access to those features and hides the rest. The Facade does not change the model of the underlying system. It should be written strictly in accordance with the other system’s model. Otherwise, you will at best diffuse responsibility for translation into multiple objects and overload the Facade and at worst end up creating yet another model, one that doesn’t belong to the other system or your own Bounded Context. The Facade belongs in the Bounded Context of the other system. It just presents a friendlier face specialized for your needs.
 
 An Adapter is a wrapper that allows a client to use a different protocol than that understood by the implementer of the behavior. When a client sends a message to an Adapter, it is converted to a semantically equivalent message and sent on to the “adaptee.” The response is converted and passed back. 
 
@@ -576,16 +576,16 @@ In a typical case, the system under design is going to get carved into one or tw
 When drawing the boundries of Bounded Contexts;
 
 Favoring Larger Bounded Contexts
-• Flow between user tasks is smoother when more is handled with a unified model.
-• It is easier to understand one coherent model than two distinct ones plus mappings. 
-• Translation between two models can be difficult (sometimes impossible).
-• Shared language fosters clear team communication.
+- Flow between user tasks is smoother when more is handled with a unified model.
+- It is easier to understand one coherent model than two distinct ones plus mappings. 
+- Translation between two models can be difficult (sometimes impossible).
+- Shared language fosters clear team communication.
 
 Favoring Smaller Bounded Contexts
-• Communication overhead between developers is reduced.
-• CONTINUOUS INTEGRATION is easier with smaller teams and code bases.
-• Larger contexts may call for more versatile abstract models, requiring skills that are in short supply.
-• Different models can cater to special needs or encompass the jargon of specialized groups of users, along with specialized dialects of the UBIQUITOUS LANGUAGE.
+- Communication overhead between developers is reduced.
+- CONTINUOUS INTEGRATION is easier with smaller teams and code bases.
+- Larger contexts may call for more versatile abstract models, requiring skills that are in short supply.
+- Different models can cater to special needs or encompass the jargon of specialized groups of users, along with specialized dialects of the UBIQUITOUS LANGUAGE.
 
 ### Accepting That Which We Cannot Change: Delineating the External Systems
 
@@ -824,3 +824,119 @@ The steps needed to refactor to SEGREGATED CORE are typically something like the
 2. When you have the luxury of refactoring freely, you focus first on better factoring of the CORE DOMAIN, on improving the segregation of the CORE, and on purifying supporting subdomains to be GENERIC.
 
 # Large-Scale Structure
+
+A “large-scale structure” is a language that lets you discuss and understand the system in broad strokes. A set of high-level concepts or rules, or both, establishes a pattern of design for an entire system. This organizing principle can guide design as well as aid understanding. It helps coordinate independent work because there is a shared concept of the big picture: how the roles of various parts shape the whole.
+
+![Large Scale Structure Patterns](assets/images/domain-driven-design/large-scale-structure-patterns.png)
+
+## Evolving Order
+
+> Let this conceptual large-scale structure evolve with the application, possibly changing to a completely different type of structure along the way. Don’t overconstrain the detailed design and model decisions that must be made with detailed knowledge.
+
+> Large-scale structure should be applied when a structure can be found that greatly clarifies the system without forcing unnatural constraints on model development. Because an ill-fitting structure is worse than none, it is best not to shoot for comprehensiveness, but rather to find a minimal set that solves the problems that have emerged. Less is more.
+
+## System Metaphor
+
+> When a concrete analogy to the system emerges that captures the imagination of team members and seems to lead thinking in a useful direction, adopt it as a large-scale structure. Organize the design around this metaphor and absorb it into the UBIQUITOUS LANGUAGE. The SYSTEM METAPHOR should both facilitate communication about the system and guide development of it. This increases consistency in different parts of the system, potentially even across different BOUNDED CONTEXTS. But because all metaphors are inexact, continually reexamine the metaphor for overextension or inaptness, and be ready to drop it if it gets in the way.
+
+## Responsibility Layers
+
+> When each individual object has handcrafted responsibilities, there are no guidelines, no uniformity, and no ability to handle large swaths of the domain together. To give coherence to a large model, it is useful to impose some structure on the assignment of those responsibilities.
+
+> Look at the conceptual dependencies in your model and the varying rates and sources of change of different parts of your domain. If you identify natural strata in the domain, cast them as broad abstract responsibilities. These responsibilities should tell a story of the high-level purpose and design of your system. Refactor the model so that the responsibilities of each domain object, AGGREGATE, and MODULE fit neatly within the responsibility of one layer.
+
+![Responsibilty Layers Example](assets/images/domain-driven-design/responsibility-layers-example.png)
+
+## Knowledge Level
+
+> In an application in which the roles and relationships between ENTITIES vary in different situations, complexity can explode. Neither fully general models nor highly customized ones serve the users’ needs. Objects end up with references to other types to cover a variety of cases, or with attributes that are used in different ways in different situations. Classes that have the same data and behavior may multiply just to accommodate different assembly rules.
+
+> Create a distinct set of objects that can be used to describe and constrain the structure and behavior of the basic model. Keep these concerns separate as two “levels,” one very concrete, the other reflecting rules and knowledge that a user or superuser is able to customize.
+
+![Knowledge Level Example](assets/images/domain-driven-design/knowledge-level-example.png)
+
+## Pluggable Component Framework
+
+> When a variety of applications have to interoperate, all based on the same abstractions but designed independently, translations between multiple BOUNDED CONTEXTS limit integration. A SHARED KERNEL is not feasible for teams that do not work closely together. Duplication and fragmentation raise costs of development and installation, and interoperability becomes very difficult.
+
+> Distill an ABSTRACT CORE of interfaces and interactions and create a framework that allows diverse implementations of those interfaces to be freely substituted. Likewise, allow any application to use those components, so long as it operates strictly through the interfaces of the ABSTRACT CORE.
+
+## Refactoring Toward a Fitting Structure
+
+Large-scale structures might not usually be decided upfront. They usually evolve over time which can be difficult and expensive. But there are some ways to maximize gain.
+
+### Minimalism
+
+Keep the strcuture simple and lightweight. Address serious concerns and leave the rest to a case-by-case basis.
+Early on, it can be helpful to choose a loose structure, such as a SYSTEM METAPHOR or a couple of RESPONSIBILITY LAYERS. 
+
+### Communication and Self-Discipline
+
+The structure must be understood by the entire team. The terminology and relationships must enter the UBIQUITOUS LANGUAGE.
+
+### Restructuring Yields Supple Design
+
+Each time the structure changes, the entire system has to be changed to adhere to the new order. 
+After repeated transformations, models become more flexible while stable aspects are simplifed.
+
+### Distillation Lightens the Load
+
+The principles of distillation and refactoring toward deeper insight apply even to the large-scale structure itself.
+
+First, by removing mechanisms, GENERIC SUBDOMAINS, and other support structure from the CORE DOMAIN, there may simply be less to restructure.
+
+If possible, these supporting elements should be defined to fit into the large-scale structure in a simple way. For example, in a system of RESPONSIBILITY LAYERS, a GENERIC SUBDOMAIN could be defined in such a way that it would fit within a single layer. With PLUGGABLE COMPONENTS, a GENERIC SUBDOMAIN could be owned entirely by a single component, or it could be a SHARED KERNEL among a set of related components. These supporting elements may have to be refactored to find their place in the structure; but they move independently of the CORE DOMAIN, and tend to be more narrowly focused, which makes it easier. And ultimately they are less critical, so refinement matters less.
+
+# Bringing the Strategy Together
+
+## Combining Large-Scale Structures and BOUNDED CONTEXTS
+
+![Bringing It Together](assets/images/domain-driven-design/bringing-it-together.png)
+
+All three principles of design (context, distillation, and large-scale structure) complement each other.
+
+![Example 1](assets/images/domain-driven-design/together-1.png)
+![Example 2](assets/images/domain-driven-design/together-2.png)
+![Example 3](assets/images/domain-driven-design/together-3.png)
+![Example 4](assets/images/domain-driven-design/together-4.png)
+
+## Combining Large-Scale Structures and Distillation
+
+![Example 5](assets/images/domain-driven-design/together-5.png)
+
+## Assessment First
+
+1. Draw a CONTEXT MAP. Can you draw a consistent one, or are there ambiguous situations?
+2. Attend to the use of language on the project. Is there a UBIQUITOUS LANGUAGE? Is it rich enough to help development?
+3. Understand what is important. Is the CORE DOMAIN identified? Is there a DOMAIN VISION STATEMENT? Can you write one?
+4. Does the technology of the project work for or against a MODEL-DRIVEN DESIGN?
+5. Do the developers on the team have the necessary technical skills?
+6. Are the developers knowledgeable about the domain? Are they interested in the domain?
+
+## Six Essentials for Strategic Design Decision Making
+
+- Decisions must reach the entire team
+- The decision process must absorb feedback
+- The plan must allow for evolution
+- Architecture teams must not siphon off all the best and brightest
+
+- Strategic design requires minimalism and humility: We have to discipline ourselves to produce organizing principles and core models that are pared down to contain nothing that does not significantly improve the clarity of the design. The truth is, almost everything gets in the way of something, so each element had better be worth it. Realizing that your best idea is likely to get in somebody’s way takes humility.
+
+- Objects are specialists; developers are generalists: The essence of good object design is to give each object a clear and narrow responsibility and to reduce interdependence to an absolute minimum. Sometimes we try to make interactions on teams as tidy as they should be in our software. A good project has lots of people sticking their nose in other people’s business. Developers play with frameworks. Architects write application code. Everyone talks to everyone. It is efficiently chaotic. Make the objects into specialists; let the developers be generalists.
+
+## The Same Goes for the Technical Frameworks
+
+Technical frameworks can greatly accelerate application development, including the domain layer, by providing an infrastructure layer that frees the application from implementing basic services, and by helping to isolate the domain from other concerns. But there is a risk that an architecture can interfere with expressive implementations of the domain model and easy change. This can happen even when the framework designers had no intention of venturing into the domain or application layers.
+
+### Don’t write frameworks for dummies
+
+Team divisions that assume some developers are not smart enough to design are likely to fail because they underestimate the difficulty of application development. If those people are not smart enough to design, they shouldn’t be assigned to develop software. If they are smart enough, then the attempts to coddle them will only put up barriers between them and the tools they need.
+
+Now, encapsulating irrelevant technical detail is completely different from the kind of prepackaging that coddles developers. A framework can place powerful abstractions and tools in developers’ hands and free them from drudgery. 
+
+### Beware the Master Plan
+
+The master plan attempts to set down guidelines to provide coherence to the application as a whole and still leave freedom for individual implemntations to adapt to developer needs.
+In practice master plans fail—because they create totalitarian order, not organic order. They are too rigid; they cannot easily adapt to the natural and unpredictable changes that inevitably arise.
+
+The existence of a master plan alienates the users [because, by definition] the members of the community can have little impact on the future shape of their community because most of the important decisions have already been made.
