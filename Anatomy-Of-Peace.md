@@ -4,7 +4,7 @@
 - The tip is dealing with the things that go wrong.
 - The vast majority is helping things move in the right direction, and that's where we should be focusing most of our time.
 
-![Change Pyramid](assets/images/change-pyramid.png)
+![Change Pyramid](assets/images/anatomy-of-peace/change-pyramid.png)
 
 - We should be viewing the person we're interacting with to be the same as we regard ourselves, as people and not as objects.
 
@@ -13,7 +13,7 @@
 - By having a disagreeable heart, we're inviting the very same conflict we've put ourselves in. We should look from the other person's shoes.
 
 In this example, Hannah is nagging to cut the front lawn, Avi complies with due to her nagging even though he has plans at that time.
-![Collusion Diagram](assets/images/collusion-diagram.png)
+![Collusion Diagram](assets/images/anatomy-of-peace/collusion-diagram.png)
 
 > Conflict plays off both parties and is a form of collusion to sustain the conflict, even if no words are said. Non-verbal queues and actions can lead to the other party's interpretation of conflict and the cycle continues
 
@@ -29,16 +29,16 @@ There are four main types of justifications over betraying ourselves. Different 
 4. Worse-than box (Justifying others instead with our personal conflicts)
 
 #### Better Than Box
-![Better Than Box](assets/images/better-than-box.png)
+![Better Than Box](assets/images/anatomy-of-peace/better-than-box.png)
 
 #### I Deserve Box
-![I Deserve Box](assets/images/i-deserve-box.png)
+![I Deserve Box](assets/images/anatomy-of-peace/i-deserve-box.png)
 
 #### Need To Be Seen As Box
-![Need To Be Seen As Box](assets/images/must-be-seen-as-box.png)
+![Need To Be Seen As Box](assets/images/anatomy-of-peace/must-be-seen-as-box.png)
 
 #### Worse Than Box
-![Worse Than Box](assets/images/worse-than-box.png)
+![Worse Than Box](assets/images/anatomy-of-peace/worse-than-box.png)
 
 In the event of overwhelming choices, like helping someone, by having our heart at peace, we still have the choice to make but additional things need to happen to bring that to fruition, we still start and end with the desire to help, and not betray ourselves.
 
@@ -62,7 +62,7 @@ To get out of our boxes, we need to;
 
 # Complete Influence Pyramid
 
-![Influence Pyramid](assets/images/influence-pyramid.png)
+![Influence Pyramid](assets/images/anatomy-of-peace/influence-pyramid.png)
 
 The full influence pyramid is
 - Correcting the things that are going wrong
