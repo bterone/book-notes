@@ -1,0 +1,1 @@
+- The original codebase has had most of its workers removed ever since they converted to read-only mode. The codebase I'm reviewing is a prior version which still contained all the workers.
