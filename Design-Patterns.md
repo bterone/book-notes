@@ -1,4 +1,5 @@
-# Design Patterns - Elements of Reusable Object-Oriented Software
+## Design Patterns
+## Elements of Reusable Object-Oriented Software
 
 # Table of Contents
 
@@ -10,7 +11,8 @@
   - [Factory Method](#factory-method)
   - [Prototype](#prototype)
   - [Singleton](#singleton)
-
+</details>
+<details>
   <summary>Structural Patterns</summary>
 
   - [Adapter](#adapter)
@@ -20,7 +22,8 @@
   - [Facade](#facade)
   - [Flyweight](#flyweight)
   - [Proxy](#proxy)
-
+</details>
+<details>
   <summary>Behavioral Patterns</summary>
 
   - [Chain of Responsibility](#chain-of-responsibility)
