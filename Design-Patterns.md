@@ -3,6 +3,8 @@
 
 # Table of Contents
 
+- [Introduction](#introduction)
+
 <details>
   <summary>Creational Patterns</summary>
 
@@ -39,12 +41,35 @@
   - [Visitor](#visitor)
 </details>
 
+## Introduction
 The following table is how the patterns are classified and which scope they apply to. i.e. Classes or Objects.
 ![Design Pattern Table](assets/images/design-patterns/design-pattern-table.png)
 
+Classes have relationships through inheritance, which are therefore static and fixed at compile-time.
+Object relationships are more dynamic and can be changed during run-time.
+
+Most patterns aren't found during early stages of design, and found over time as more apparant relationships emerge. The key is flexibility.
+
+![Design Pattern Relationships](assets/images/design-patterns/design-pattern-relationships.png)
+
+## Object Interfaces
+
+Every operation in an object specifies the operation name, the objects it takes as params, and its return value. This is known as an operation's **signature**. A set of all signatures defined by an object's operations is called the interface.
+
+### Dynamic Binding
+
+> Dynamic-binding refers to the run-time assocation of a request to an object that executes different implemetatations of operations depending on the receiving object. Also known as late-binding.
+
+By dynamic binding, we can subsitute objects with similar interfaces for each other during runtime, known as polymorphism.
+
+### Abstract Class
+
+> Abstract classes define a common interface for subclasses and defer some or all of its implementation to subclasses. This means abstract classes can't be instantiated.
+
+> Non-abstract classes are called concrete classes.
 
 # Creational Patterns
-Following is a list of patterns for how objects are created.
+Following is a list of patterns for how objects are created. These patterns show how subclasses or other objects are used during creation of classes/objects.
 
 ## Abstract Factory
 Provides an interface for creating families of related or dependent objects without specifying their concrete classes.
@@ -63,7 +88,7 @@ Ensure a class only has one instance, and provide a global point of access to it
 
 
 # Structural Patterns
-Following is a list of patterns for how objects relate to each other
+Following is a list of patterns for how objects relate to each other. Structural class patterns uses inheritance to compose classes, while object patterns describe ways to assemble objects.
 
 ## Adapter
 Convert the interface of a class into another interface clients expect. Adapter lets classes work together that couldn't otherwise because of incompatible interfaces.
@@ -88,7 +113,7 @@ Provide a surrogate or placeholder for another object to control access to it.
 
 
 # Behavioral Patterns
-Following is a list of patterns for how objects communicate with each other
+Following is a list of patterns for how objects communicate with each other and distribute responsibility. Behavioral Class patterns use inheritance to describe algorithms and flow of control, while Behavioral object patterns describe how objects cooperate to perform tasks that aren't done by one object alone.
 
 ## Chain of Responsibility
 Avoid coupling the sender of a request to its receiver by giving more than one object a chance to handle the request. Chain the receiving objects and pass the request along the chain until an object handles it.
