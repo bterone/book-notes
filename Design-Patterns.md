@@ -5,41 +5,41 @@
 
 - [Introduction](#introduction)
 
-<details>
-  <summary>Creational Patterns</summary>
+- <details>
+    <summary>Creational Patterns</summary>
 
-  - [Abstract Factory](#abstract-factory)
-  - [Builder](#builder)
-  - [Factory Method](#factory-method)
-  - [Prototype](#prototype)
-  - [Singleton](#singleton)
-</details>
-<details>
-  <summary>Structural Patterns</summary>
+    - [Abstract Factory](#abstract-factory)
+    - [Builder](#builder)
+    - [Factory Method](#factory-method)
+    - [Prototype](#prototype)
+    - [Singleton](#singleton)
+  </details>
+  <details>
+    <summary>Structural Patterns</summary>
 
-  - [Adapter](#adapter)
-  - [Bridge](#bridge)
-  - [Composite](#composite)
-  - [Decorator](#decorator)
-  - [Facade](#facade)
-  - [Flyweight](#flyweight)
-  - [Proxy](#proxy)
-</details>
-<details>
-  <summary>Behavioral Patterns</summary>
+    - [Adapter](#adapter)
+    - [Bridge](#bridge)
+    - [Composite](#composite)
+    - [Decorator](#decorator)
+    - [Facade](#facade)
+    - [Flyweight](#flyweight)
+    - [Proxy](#proxy)
+  </details>
+  <details>
+    <summary>Behavioral Patterns</summary>
 
-  - [Chain of Responsibility](#chain-of-responsibility)
-  - [Command](#command)
-  - [Interpreter](#interpreter)
-  - [Iterator](#iterator)
-  - [Mediator](#mediator)
-  - [Memento](#memento)
-  - [Observer](#observer)
-  - [State](#state)
-  - [Strategy](#strategy)
-  - [Template Method](#template-method)
-  - [Visitor](#visitor)
-</details>
+    - [Chain of Responsibility](#chain-of-responsibility)
+    - [Command](#command)
+    - [Interpreter](#interpreter)
+    - [Iterator](#iterator)
+    - [Mediator](#mediator)
+    - [Memento](#memento)
+    - [Observer](#observer)
+    - [State](#state)
+    - [Strategy](#strategy)
+    - [Template Method](#template-method)
+    - [Visitor](#visitor)
+  </details>
 
 ## Introduction
 The following table is how the patterns are classified and which scope they apply to. i.e. Classes or Objects.
