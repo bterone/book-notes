@@ -52,6 +52,22 @@ Most patterns aren't found during early stages of design, and found over time as
 
 ![Design Pattern Relationships](assets/images/design-patterns/design-pattern-relationships.png)
 
+## Object Interfaces
+
+Every operation in an object specifies the operation name, the objects it takes as params, and its return value. This is known as an operation's **signature**. A set of all signatures defined by an object's operations is called the interface.
+
+### Dynamic Binding
+
+> Dynamic-binding refers to the run-time assocation of a request to an object that executes different implemetatations of operations depending on the receiving object. Also known as late-binding.
+
+By dynamic binding, we can subsitute objects with similar interfaces for each other during runtime, known as polymorphism.
+
+### Abstract Class
+
+> Abstract classes define a common interface for subclasses and defer some or all of its implementation to subclasses. This means abstract classes can't be instantiated.
+
+> Non-abstract classes are called concrete classes.
+
 ## Inheritance versus Composition
 
 Class inheritance is defined statically at compile-time and is supported in most languages. This makes it easier to modify the implementation being reused. When a subclass overrides some but not all operations, it can affect the operations it inherits as well. But it comes with disadvantages, such as being unable to change implementations inherited from parent classes at run-time, as the inheritance is defined at compile-time. Another downside is that parent classes often define at least part of their subclass's physical representation.
@@ -70,21 +86,41 @@ Delegation are when a receiving object delegates a request operations to its **d
 
 The Window class must forward requests explicitly instead of inheriting those operations.
 
-## Object Interfaces
+## Inheritance versus Parameterized Types
 
-Every operation in an object specifies the operation name, the objects it takes as params, and its return value. This is known as an operation's **signature**. A set of all signatures defined by an object's operations is called the interface.
+Parameterized types give us a third way (in addition to class inheritance and object composition) to compose behavior in object-oriented systems.
 
-### Dynamic Binding
+Examples of Parameterized Types Patterns are the Template Method, Strategy, or an argument that specifies the name of the function to call and compare the elements.
 
-> Dynamic-binding refers to the run-time assocation of a request to an object that executes different implemetatations of operations depending on the receiving object. Also known as late-binding.
+Inheritance nor parameterized types are unable to change at run-time.
 
-By dynamic binding, we can subsitute objects with similar interfaces for each other during runtime, known as polymorphism.
+## Common Causes for Redesign
 
-### Abstract Class
+1. Creating an object by specifying a class explicitly.
+Applicable Patterns: Abstract Factory, Factory Method, Prototype.
 
-> Abstract classes define a common interface for subclasses and defer some or all of its implementation to subclasses. This means abstract classes can't be instantiated.
+2. Dependence on specific operations.
+Applicable Patterns: Chain of Responsibility, Command
 
-> Non-abstract classes are called concrete classes.
+3. Dependence on hardware and software platform.
+Applicable Patterns: Abstract Factory, Bridge.
+
+4. Dependence on object representations or implementations.
+Applicable Patterns: Abstract Factory, Bridge, Memento, Proxy.
+
+5. Algorithmic dependencies.
+Applicable Patterns: Builder, Iterator, Strategy, Template Method, Visitor.
+
+6. Tight coupling.
+Applicable Patterns: Abstract Factory, Bridge, Chain of Responsibility, Command, Facade, Mediator, Observer.
+
+7. Extending functionality by subclassing.
+Applicable Patterns: Bridge, Chain of Responsibility, Composite, Decorator, Observer, Strategy.
+
+8. Inability to alter classes conveniently.
+Applicable Patterns: Adapter, Decorator, Visitor.
+
+> For indepth explanations on the causes, refer to Design Patterns, pg. 24.
 
 # Creational Patterns
 Following is a list of patterns for how objects are created. These patterns show how subclasses or other objects are used during creation of classes/objects.
