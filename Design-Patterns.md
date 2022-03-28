@@ -96,6 +96,8 @@ Inheritance nor parameterized types are unable to change at run-time.
 
 ## Common Causes for Redesign
 
+Design patterns are long term solutions on how systems are developed. Systems should take into account how it evolves over time.
+
 1. Creating an object by specifying a class explicitly.
 Applicable Patterns: Abstract Factory, Factory Method, Prototype.
 
@@ -121,6 +123,43 @@ Applicable Patterns: Bridge, Chain of Responsibility, Composite, Decorator, Obse
 Applicable Patterns: Adapter, Decorator, Visitor.
 
 > For indepth explanations on the causes, refer to Design Patterns, pg. 24.
+
+### Classes of Software
+
+1. Application Programs (E.g. Document or spreadsheet editor): 
+   - Should prioritize *internal* reuse, maintainability, and extension. 
+
+2. Toolkits: Set of related and reusable classes designed to provide general-purpose functionality. (E.g. Set of collection of classes for lists, associative tables, stacks, etc., like C++ I/O stream library).
+   - These do not impose any design pattern, only provide functionality. Emphasizes code reuse.
+   - They avoid assumptions and dependencies that could limit a toolkit's flexibility.
+
+3. Frameworks: Dictates the archiecture of the application, and predefines design paramters.
+
+The differences between design patterns and frameworks are as follows:
+1. Design patterns are more abstract than frameworks.
+2. Design patterns are smaller architectural elements than frameworks.
+3. Design patterns are less specialized than frameworks.
+
+## How to Select a Design Pattern
+- Consider how design patterns solve design problems.
+- Scan Intent sections.
+- Study how patterns interrelate.
+- Study patterns of like purpose.
+- Examine a cause of redesign.
+- Consider what should be variable in your design.
+
+## How to Use a Design Pattern
+1. Read the pattern once through for an overview.
+2. Go back and study the Structure, Participants and Collaborations sections.
+3. Look at the Sample Code section to see a concrete example of the pattern in code.
+4. Choose names for pattern participants that are meaningful in the application context.
+5. Define the classes. (Declare interfaces, establish their inheritance relationships and identity existing classes in your application that the pattern would affect and modify them accordingly)
+6. Define application-specific names for operations in the pattern.
+7. Implement the operations to carry out the responsibilities and collaborations in the pattern.
+
+![Design Pattern Aspects](assets/images/design-patterns/design-pattern-aspects.png)
+
+---------------------------------------------
 
 # Creational Patterns
 Following is a list of patterns for how objects are created. These patterns show how subclasses or other objects are used during creation of classes/objects.
