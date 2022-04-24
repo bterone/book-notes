@@ -206,6 +206,8 @@ The composite pattern is only useful when the core model of your app can be repr
 <details>
   <summary>Example in Ruby</summary>
 
+  [From Refactoring Guru](https://refactoring.guru/design-patterns/composite)
+
   ```ruby
   # The base Component class declares common operations for both simple and
   # complex objects of a composition.
