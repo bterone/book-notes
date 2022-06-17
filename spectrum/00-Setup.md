@@ -4,6 +4,18 @@
 - Redis
 - Yarn
 
+**TLDR**: Important commands
+```sh
+docker compose -f docker-compose.dev.yml up -d
+node shared/install-dependencies.js
+# yarn run db:drop
+# yarn run db:migrate
+# yarn run db:seed
+# yarn run db:reset
+yarn run dev:api
+yarn run dev:web
+```
+
 Run the `install-dependencies` script to go through each worker and install all dependencies.
 
 ```sh
