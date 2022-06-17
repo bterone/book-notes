@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  db: 
+    image: rethinkdb:2.4.1
+    container_name: spectrum_db
+    ports:
+      - "8080:8080"
+      - "28015:28015"
+      - "29015:29015"
+
+  redis:
+    image: redis:6.2.6
+    container_name: spectrum_redis
+    ports:
+      - "6379:6379"
