@@ -269,3 +269,18 @@ Define the skeleton of an algorithm in an operation, deferring some steps to sub
 
 ## Visitor
 Represent an operation to be performed on the elements of an object structure. Visitor lets you define a new operation without changing the classes of the elements on which it operates.
+
+Use the Visitor pattern when:
+- You need to perform an operation on all elements of a complex object structure, E.g. An object tree with different types of objects on each branch.
+- To clean up business logic of auxiliary behaviors. The visitor pattern makes classes more focused on their roles and extract other behaviors into a set of visitor classes.
+- A behavior makes sense only in some classes of a class hierarchy, but not in others. We can exxtract behavior into separate visitor classes and implement only those visiting methods that accept objects of relevant classes, leaving the rest empty.
+
+![Visitor](./assets/images/design-patterns/visitor.png)
+
+- The **Visitor** interface declares a set of visiting methods that can take concrete elements of an object structure as arguments. These methods may have the same names if the program is written in a language that supports overloading, but the type of their parameters must be different.
+- Each **Concrete Visitor** implements several versions of the same behaviors, tailored for different concrete element classes.
+- The **Element** interface declares a method for “accepting” visitors. This method should have one parameter declared with the type of the visitor interface.
+- Each **Concrete Element** must implement the acceptance method. The purpose of this method is to redirect the call to the proper visitor’s method corresponding to the current element class. Be aware that even if a base element class implements this method, all subclasses must still override this method in their own classes and call the appropriate method on the visitor object.
+- The **Client** usually represents a collection or some other complex object (for example, a [Composite](#composite) tree). Usually, clients aren’t aware of all the concrete element classes because they work with objects from that collection via some abstract interface.
+
+[Code Example](./assets/docs/code/visitor.md)
