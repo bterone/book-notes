@@ -209,6 +209,24 @@ Following is a list of patterns for how objects relate to each other. Structural
 ## Adapter
 Convert the interface of a class into another interface clients expect. Adapter lets classes work together that couldn't otherwise because of incompatible interfaces.
 
+This implementation uses the object composition principle: the adapter implements the interface of one object and wraps the other one. It can be implemented in all popular programming languages.
+
+![Object Adapter](./assets/images/design-patterns/object-adapter.png)
+
+- The **Client** is a class that contains the existing business logic of the program.
+- The **Client Interface** describes a protocol that other classes must follow to be able to collaborate with the client code.
+- The **Service** is some useful class (usually 3rd-party or legacy). The client can’t use this class directly because it has an incompatible interface.
+- The **Adapter** is a class that’s able to work with both the client and the service: it implements the client interface, while wrapping the service object. The adapter receives calls from the client via the adapter interface and translates them into calls to the wrapped service object in a format it can understand.
+- The client code doesn’t get coupled to the concrete adapter class as long as it works with the adapter via the client interface. Thanks to this, you can introduce new types of adapters into the program without breaking the existing client code. This can be useful when the interface of the service class gets changed or replaced: you can just create a new adapter class without changing the client code.
+
+This implementation uses inheritance: the adapter inherits interfaces from both objects at the same time. Note that this approach can only be implemented in programming languages that support multiple inheritance, such as C++.
+
+![Class Adapter](./assets/images/design-patterns/class-adapter.png)
+
+- The **Class Adapter** doesn’t need to wrap any objects because it inherits behaviors from both the client and the service. The adaptation happens within the overridden methods. The resulting adapter can be used in place of an existing client class.
+
+[Code Example](./assets/docs/code/adapter.md)
+
 ## Bridge
 Decouple an abstraction from its implementation so that the two can vary independantly.
 
