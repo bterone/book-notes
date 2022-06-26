@@ -175,6 +175,15 @@ Separate the construction of a complex object from its representation so that th
 ## Factory Method
 Define an interface for creating an object, but let subclasses decide which class to instantiate. Factory Method lets a class defer instantiation to subclasses.
 
+![Factory Method](./assets/images/design-patterns/factory-method.png)
+
+- The **Product** declares the interface, which is common to all objects that can be produced by the creator and its subclasses.
+- **Concrete Products** are different implementations of the product interface.
+- The **Creator** class declares the factory method that returns new product objects. It’s important that the return type of this method matches the product interface. You can declare the factory method as abstract to force all subclasses to implement their own versions of the method. As an alternative, the base factory method can return some default product type.
+- **Concrete Creators** override the base factory method so it returns a different type of product. Note that the factory method doesn’t have to create new instances all the time. It can also return existing objects from a cache, an object pool, or another source.
+
+[Code Example](./assets/docs/code/factory-method.md)
+
 ## Prototype
 Specify the knids of objects to create using a prototypical instance, and create new objects by copying this prototype.
 
@@ -195,6 +204,11 @@ Decouple an abstraction from its implementation so that the two can vary indepen
 Compose objects into tree structures to represent part-whole hierarchies. Composite lets clients treat individual objects and comopsitions of objects uniformly.
 
 The composite pattern is only useful when the core model of your app can be represented as a tree.
+
+Use the Factory Method when:
+- You don't know beforehand the exact types and dependencies of the objects your code should work with.
+- You want to provide users of your library or framework with a way to extend its internal components.
+- You want to save system resources by reusing existing objects instead of rebuilding them each time.
 
 ![Composite](./assets/images/design-patterns/composite.png)
 
