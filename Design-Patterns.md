@@ -169,6 +169,18 @@ Following is a list of patterns for how objects are created. These patterns show
 ## Abstract Factory
 Provides an interface for creating families of related or dependent objects without specifying their concrete classes.
 
+Many designs start by using [Factory Method](#factory-method) (less complicated and more customizable via subclasses) and evolve toward Abstract Factory, [Prototype](#prototype), or [Builder](#builder) (more flexible, but more complicated).
+
+![Strategy](./assets/images/design-patterns/abstract-factory.png)
+
+- **Abstract Products** declare interfaces for a set of distinct but related products which make up a product family.
+- **Concrete Products** are various implementations of abstract products, grouped by variants. Each abstract product (chair/sofa) must be implemented in all given variants (Victorian/Modern).
+- The **Abstract Factory** interface declares a set of methods for creating each of the abstract products.
+- **Concrete Factories** implement creation methods of the abstract factory. Each concrete factory corresponds to a specific variant of products and creates only those product variants.
+- Although concrete factories instantiate concrete products, signatures of their creation methods must return corresponding abstract products. This way the client code that uses a factory doesn’t get coupled to the specific variant of the product it gets from a factory. The Client can work with any concrete factory/product variant, as long as it communicates with their objects via abstract interfaces.
+
+[Code Example](./assets/docs/code/abstract-factory.md)
+
 ## Builder
 Separate the construction of a complex object from its representation so that the same construction process can create different representations.
 
