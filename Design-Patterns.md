@@ -171,7 +171,7 @@ Provides an interface for creating families of related or dependent objects with
 
 Many designs start by using [Factory Method](#factory-method) (less complicated and more customizable via subclasses) and evolve toward Abstract Factory, [Prototype](#prototype), or [Builder](#builder) (more flexible, but more complicated).
 
-![Strategy](./assets/images/design-patterns/abstract-factory.png)
+![Abstract Factory](./assets/images/design-patterns/abstract-factory.png)
 
 - **Abstract Products** declare interfaces for a set of distinct but related products which make up a product family.
 - **Concrete Products** are various implementations of abstract products, grouped by variants. Each abstract product (chair/sofa) must be implemented in all given variants (Victorian/Modern).
@@ -210,7 +210,22 @@ Following is a list of patterns for how objects relate to each other. Structural
 Convert the interface of a class into another interface clients expect. Adapter lets classes work together that couldn't otherwise because of incompatible interfaces.
 
 ## Bridge
-Decouple an abstraction from its implementation so that the two can vary independantly
+Decouple an abstraction from its implementation so that the two can vary independantly.
+
+Use the Bridge pattern when:
+- You want to divide and organize a monolithic class that has several variants of some functionality (for example, if the class can work with various database servers).
+- You need to extend a class in several orthogonal (independent) dimensions.
+- You need to be able to switch implementations at runtime.
+
+![Bridge](./assets/images/design-patterns/bridge.png)
+
+- The **Abstraction** provides high-level control logic. It relies on the implementation object to do the actual low-level work.
+- The **Implementation** declares the interface that’s common for all concrete implementations. An abstraction can only communicate with an implementation object via methods that are declared here. The abstraction may list the same methods as the implementation, but usually the abstraction declares some complex behaviors that rely on a wide variety of primitive operations declared by the implementation.
+- **Concrete Implementations** contain platform-specific code.
+- **Refined Abstractions** provide variants of control logic. Like their parent, they work with different implementations via the general implementation interface.
+- Usually, the **Client** is only interested in working with the abstraction. However, it’s the client’s job to link the abstraction object with one of the implementation objects.
+
+[Code Example](./assets/docs/code/bridge.md)
 
 ## Composite
 Compose objects into tree structures to represent part-whole hierarchies. Composite lets clients treat individual objects and comopsitions of objects uniformly.
