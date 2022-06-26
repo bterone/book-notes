@@ -184,7 +184,7 @@ Many designs start by using [Factory Method](#factory-method) (less complicated 
 ## Builder
 Separate the construction of a complex object from its representation so that the same construction process can create different representations.
 
-Use the Builder Pattern:
+Use the Builder pattern:
 - To get rid of a “telescoping constructor”. 
 
 E.g.
@@ -291,6 +291,20 @@ Use the Factory Method when:
 
 ## Decorator
 Attach additional responsibilities to an object dynamically. Decorators provide a flexible alternative to subclassing for extending functionality.
+
+Use the Decorator pattern when:
+- You need to be able to assign extra behaviors to objects at runtime without breaking the code that uses these objects.
+- It’s awkward or not possible to extend an object’s behavior using inheritance.
+
+![Decorator](./assets/images/design-patterns/decorator.png)
+
+- The **Component** declares the common interface for both wrappers and wrapped objects.
+- **Concrete Component** is a class of objects being wrapped. It defines the basic behavior, which can be altered by decorators.
+- The **Base Decorator** class has a field for referencing a wrapped object. The field’s type should be declared as the component interface so it can contain both concrete components and decorators. The base decorator delegates all operations to the wrapped object.
+- **Concrete Decorators** define extra behaviors that can be added to components dynamically. Concrete decorators override methods of the base decorator and execute their behavior either before or after calling the parent method.
+- The **Client** can wrap components in multiple layers of decorators, as long as it works with all objects via the component interface.
+
+[Code Example](./assets/docs/code/decorator.md)
 
 ## Facade
 Provide a unified interface to a set of interfaces in a subsystem. Facade defines a higher-level interface that makes the subsystem easier to use.
