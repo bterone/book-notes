@@ -384,6 +384,13 @@ Use the Strategy pattern when:
 ## Template Method
 Define the skeleton of an algorithm in an operation, deferring some steps to subclasses. Template Method lets subclasses redefine certain steps of an algorithm without changing the algorithm's structure.
 
+![Template Method](./assets/images/design-patterns/template-method.png)
+
+- The **Abstract Class** declares methods that act as steps of an algorithm, as well as the actual template method which calls these methods in a specific order. The steps may either be declared abstract or have some default implementation.
+- **Concrete Classes** can override all of the steps, but not the template method itself.
+
+[Code Example](./assets/docs/code/template-method.md)
+
 ## Visitor
 Represent an operation to be performed on the elements of an object structure. Visitor lets you define a new operation without changing the classes of the elements on which it operates.
 
