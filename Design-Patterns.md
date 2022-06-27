@@ -239,6 +239,13 @@ Specify the knids of objects to create using a prototypical instance, and create
 ## Singleton
 Ensure a class only has one instance, and provide a global point of access to it.
 
+![Singleton](./assets/images/design-patterns/singleton.png)
+
+- The **Singleton** class declares the static method getInstance that returns the same instance of its own class.
+- The Singleton’s constructor should be hidden from the client code. Calling the getInstance method should be the only way of getting the Singleton object.
+
+[Code Example](./assets/docs/code/singleton.md)
+
 
 # Structural Patterns
 Following is a list of patterns for how objects relate to each other. Structural class patterns uses inheritance to compose classes, while object patterns describe ways to assemble objects.
