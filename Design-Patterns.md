@@ -224,6 +224,18 @@ Define an interface for creating an object, but let subclasses decide which clas
 ## Prototype
 Specify the knids of objects to create using a prototypical instance, and create new objects by copying this prototype.
 
+![Prototype](./assets/images/design-patterns/prototype.png)
+
+- The **Prototype** interface declares the cloning methods. In most cases, it’s a single clone method.
+- The **Concrete Prototype** class implements the cloning method. In addition to copying the original object’s data to the clone, this method may also handle some edge cases of the cloning process related to cloning linked objects, untangling recursive dependencies, etc.
+- The **Client** can produce a copy of any object that follows the prototype interface.
+
+> Many designs start by using [Factory Method](#factory-method) (less complicated and more customizable via subclasses) and evolve toward Abstract Factory, Prototype, or Builder (more flexible, but more complicated).
+
+> Sometimes Prototype can be a simpler alternative to Memento. This works if the object, the state of which you want to store in the history, is fairly straightforward and doesn’t have links to external resources, or the links are easy to re-establish.
+
+[Code Example](./assets/docs/code/prototype.md)
+
 ## Singleton
 Ensure a class only has one instance, and provide a global point of access to it.
 
