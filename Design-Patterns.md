@@ -360,6 +360,15 @@ Use sharing to support large numbers of fine-grained objects efficiently.
 ## Proxy
 Provide a surrogate or placeholder for another object to control access to it.
 
+![Proxy](./assets/images/design-patterns/proxy.png)
+
+- The **Service Interface** declares the interface of the Service. The proxy must follow this interface to be able to disguise itself as a service object.
+- The **Service** is a class that provides some useful business logic.
+- The **Proxy** class has a reference field that points to a service object. After the proxy finishes its processing (e.g., lazy initialization, logging, access control, caching, etc.), it passes the request to the service object. Usually, proxies manage the full lifecycle of their service objects.
+- The **Client** should work with both services and proxies via the same interface. This way you can pass a proxy into any code that expects a service object.
+
+[Code Example](./assets/docs/code/proxy.md)
+
 
 # Behavioral Patterns
 Following is a list of patterns for how objects communicate with each other and distribute responsibility. Behavioral Class patterns use inheritance to describe algorithms and flow of control, while Behavioral object patterns describe how objects cooperate to perform tasks that aren't done by one object alone.
