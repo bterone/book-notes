@@ -328,6 +328,19 @@ Use the Decorator pattern when:
 ## Facade
 Provide a unified interface to a set of interfaces in a subsystem. Facade defines a higher-level interface that makes the subsystem easier to use.
 
+> Facade defines a new interface for existing objects, whereas Adapter tries to make the existing interface usable. Adapter usually wraps just one object, while Facade works with an entire subsystem of objects.
+
+![Facade](./assets/images/design-patterns/facade.png)
+
+- The **Facade** provides convenient access to a particular part of the subsystem’s functionality. It knows where to direct the client’s request and how to operate all the moving parts.
+- An **Additional Facade** class can be created to prevent polluting a single facade with unrelated features that might make it yet another complex structure. Additional facades can be used by both clients and other facades.
+- The **Complex Subsystem** consists of dozens of various objects. To make them all do something meaningful, you have to dive deep into the subsystem’s implementation details, such as initializing objects in the correct order and supplying them with data in the proper format. Subsystem classes aren’t aware of the facade’s existence. They operate within the system and work with each other directly.
+- The **Client** uses the facade instead of calling the subsystem objects directly.
+
+> Facade is similar to [Proxy](#proxy) in that both buffer a complex entity and initialize it on its own. Unlike Facade, Proxy has the same interface as its service object, which makes them interchangeable.
+
+[Code Example](./assets/docs/code/facade.md)
+
 ## Flyweight
 Use sharing to support large numbers of fine-grained objects efficiently.
 
