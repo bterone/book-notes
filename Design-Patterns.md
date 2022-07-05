@@ -404,7 +404,7 @@ Encapsulate a request as an object, thereby letting you parameterize clients wit
 Given a language, define a represention for its grammar along with an interpreter that uses the representation to interpret sentences in the language.
 
 ## Iterator
-Provide a way to access the elements of an aggregate object sequentially withoutexposingitsunderlying representation.
+Provide a way to access the elements of an aggregate object sequentially without exposing its underlying representation.
 
 ![Iterator](./assets/images/design-patterns/iterator.png)
 
