@@ -30,7 +30,6 @@
 
     - [Chain of Responsibility](#chain-of-responsibility)
     - [Command](#command)
-    - [Interpreter](#interpreter)
     - [Iterator](#iterator)
     - [Mediator](#mediator)
     - [Memento](#memento)
@@ -399,9 +398,6 @@ Encapsulate a request as an object, thereby letting you parameterize clients wit
 - The **Client** creates and configures concrete command objects. The client must pass all of the request parameters, including a receiver instance, into the command’s constructor. After that, the resulting command may be associated with one or multiple senders.
 
 [Code Example](./assets/docs/code/command.md)
-
-## Interpreter
-Given a language, define a represention for its grammar along with an interpreter that uses the representation to interpret sentences in the language.
 
 ## Iterator
 Provide a way to access the elements of an aggregate object sequentially without exposing its underlying representation.
