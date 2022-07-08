@@ -427,12 +427,22 @@ Define an object that encapsulates how a set of objects interact. Mediator promo
 ## Memento
 Without violating encapsulation, capture and externalize an object's internal state so that the object can be restored to this state later.
 
-![Memento](./assets/images/design-patterns/memento.png)
+### Implementing based on nested classes
+
+![Memento Nested Classes](./assets/images/design-patterns/memento-with-nested-classes.png)
 
 - The **Originator** class can produce snapshots of its own state, as well as restore its state from snapshots when needed.
 - The **Memento** is a value object that acts as a snapshot of the originator’s state. It’s a common practice to make the memento immutable and pass it the data only once, via the constructor.
 - The **Caretaker** knows not only “when” and “why” to capture the originator’s state, but also when the state should be restored. A caretaker can keep track of the originator’s history by storing a stack of mementos. When the originator has to travel back in history, the caretaker fetches the topmost memento from the stack and passes it to the originator’s restoration method.
 - In this implementation, the memento class is nested inside the originator. This lets the originator access the fields and methods of the memento, even though they’re declared private. On the other hand, the caretaker has very limited access to the memento’s fields and methods, which lets it store mementos in a stack but not tamper with their state.
+
+### Implementing with strict encapsulation
+
+![Memento Strict Encapsulation](./assets/images/design-patterns/memento-with-strict-encapsulation.png)
+
+- This implementation allows having multiple types of originators and mementos. Each originator works with a corresponding memento class. Neither originators nor mementos expose their state to anyone.
+- Caretakers are now explicitly restricted from changing the state stored in mementos. Moreover, the caretaker class becomes independent from the originator because the restoration method is now defined in the memento class.
+- Each memento becomes linked to the originator that produced it. The originator passes itself to the memento’s constructor, along with the values of its state. Thanks to the close relationship between these classes, a memento can restore the state of its originator, given that the latter has defined the appropriate setters.
 
 [Code Example](./assets/docs/code/memento.md)
 
